@@ -12,7 +12,7 @@ io.on('connection', socket => {
     console.log(`User ${socket.id} connected`);
 
     socket.on('message', data => {
-        console.log(data)
+        console.log(`${socket.id}: ${data}`)
         io.emit('message', { id: socket.id, shortId: socket.id.substring(0, 5), text: data, type: "message" });
     })
     socket.on('disconnect', () => {
