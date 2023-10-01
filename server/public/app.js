@@ -15,8 +15,8 @@ var targetObj = {};
 var targetProxy = new Proxy(targetObj, {
     set: async function (target, key, value) {
         if (typeof document.visibilityState !== "undefined" && document.visibilityState === "hidden") await waitForVariableValue();
-        document.dispatchEvent(new Event("scrollDown"));
         target[key] = value;
+        if (target[key] == 1) document.dispatchEvent(new Event("scrollDown"));
         return true;
     }
 });
